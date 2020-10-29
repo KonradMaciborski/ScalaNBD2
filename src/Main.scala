@@ -1,6 +1,6 @@
 object Main extends App {
 
-  print("Zadanie 1\n")
+  println("Zadanie 1\n")
 
   def getDescriptionForWeekDayName(day: String): String = day.toLowerCase match  {
     case "poniedziałek" => "Praca"
@@ -17,7 +17,7 @@ object Main extends App {
   println(getDescriptionForWeekDayName("Niedziela"))
   println(getDescriptionForWeekDayName("co - jajco"))
 
-  print("\nZadanie 2\n")
+  println("\nZadanie 2\n")
 
   class KontoBankowe(val stanKonta: Double){
     def this(){
@@ -33,7 +33,7 @@ object Main extends App {
   println(kb2.toString)
 
 
-  print("\nZadanie 3\n")
+  println("\nZadanie 3\n")
 
   class Osoba(var imie: String, var nazwisko: String)
 
@@ -55,6 +55,34 @@ object Main extends App {
   println(greetPerson(osoba4))
 
 
-  print("\nZadanie 4\n")
+  println("\nZadanie 4\n")
+
+  def sqr(wrt: Int): Int = wrt * wrt
+
+  def sqrThree(wrt: Int, func: Int => Int) = {
+     func(func(func(wrt)))
+  }
+
+  println(sqrThree(2, sqr))
+
+
+  println("\nZadanie 5\n")
+
+
+  abstract class Osobaa(val imie: String, val nazwisko: String, var podatek: Double){
+    //def podatek: Double = _podatek
+  }
+
+  trait Pracownik extends Osobaa {
+    override def podatek: Double = pensja + 0.2d
+  }
+
+  trait Student extends Osobaa {
+    override def podatek: Double = 0
+  }
+
+  trait Nauczyciel extends Pracownik {
+    override def podatek: Double = 0.1 * pensja
+  }
 
 }
