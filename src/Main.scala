@@ -69,18 +69,17 @@ object Main extends App {
   println("\nZadanie 5\n")
 
 
-  class Osobaa(val imie: String, val nazwisko: String, val podatek: Double){
-    def this(imie: String, nazwisko: String){
-      this(imie, nazwisko, 0)
-    }
+  class Osobaa(val imie: String, val nazwisko: String){
+
+    private var _podatek: Double = 0d
+    def podatek: Double = _podatek
+
+
   }
 
   trait Pracownik extends Osobaa {
-    val pensja = 0d
-    def this(imie: String, nazwisko: String, _pensja: Double){
-      this(imie, nazwisko)
-      this.pensja = _pensja
-    }
+    private var _pensja: Double = 0
+    override def podatek: Double = _pensja * 0.2
   }
 
   trait Student extends Osobaa {
@@ -88,9 +87,10 @@ object Main extends App {
   }
 
   trait Nauczyciel extends Pracownik {
-    override def podatek: Double = pensja * 0.1
+    private var _pensja: Double = 0
+    override def podatek: Double = _pensja * 0.1
   }
 
-  val pracownik1 = new Osobaa("Konrad", "Maciborski", 10d) with Pracownik
+  val pracownik1 = new Osobaa("Konrad", "Maciborski") with Pracownik
 
 }
